@@ -1,0 +1,12 @@
+{% extends 'base' %}
+
+
+
+{% block body %}
+   {% if is_granted('ROLE_ADMIN') %}
+    <h1>Users Administration</h1>
+    {{  dump(users) }}
+    {% for users in users %}
+        {{ user.email }}
+    {% endfor %}
+{% endblock %}
