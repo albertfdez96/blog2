@@ -66,6 +66,50 @@ class UserType extends AbstractType
     }
 
 
+    public function buildFormEdit(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('username', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
+
+                'required'=>'required',
+                'attr'=>[
+                    'class'=>'form-username form-control',
+                    'placeholder'=>'Username'
+                ]
+            ])
+            ->add('email', EmailType::class,[
+                'required'=>'required',
+                'attr'=>[
+                    'class'=>'form-email form-control',
+                    'placeholder'=>'Email@email'
+                ]
+            ])
+            ->add('plainpassword', RepeatedType::class,[
+                'type'=>PasswordType::class,
+                'required'=>'required',
+                'first_options'=>[
+                    'attr'=>[
+                        'class'=>'form-password form-control',
+                        'placeholder'=>'password'
+                    ]
+                ],
+                'second_options'=>[
+                    'attr'=>[
+                        'class'=>'form-password form-control',
+                        'placeholder'=>'repeat password'
+                    ]
+                ]
+            ])
+            ->add('roles', CheckboxType::class,[
+                'required'=>'required',
+                'attr'=>[
+                    'label'    => 'ROLE_ADMIN',
+                    'label'    => 'ROLE_USER',
+                    'required' => true
+                ]
+            ]);
+    }
+
 
 
 }

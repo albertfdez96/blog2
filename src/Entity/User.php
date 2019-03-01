@@ -53,7 +53,7 @@ class User implements UserInterface
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $username;
 
@@ -95,9 +95,7 @@ class User implements UserInterface
     /**
      * @ORM\OneTOMany(targetEntity="App\Entity\Post", mappedBy="user")
      */
-
     private $posts;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user")
      */

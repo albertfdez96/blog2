@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil - {{ user.username }}{% endblock %}
+
+{% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <h1> {{ user.username }} </h1>
+
+    {% endif %}
+
+{% endblock %}

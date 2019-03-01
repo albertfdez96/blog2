@@ -1,12 +1,12 @@
-{% extends 'base' %}
-
-
+{% extends 'base.html.twig' %}
 
 {% block body %}
-   {% if is_granted('ROLE_ADMIN') %}
-    <h1>Users Administration</h1>
-    {{  dump(users) }}
-    {% for users in users %}
-        {{ user.email }}
-    {% endfor %}
+    <div class="col-lg-4 box-form">
+        <h2>Crear usuario</h2>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-success" value="Update">
+        {{ form_errors(form) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

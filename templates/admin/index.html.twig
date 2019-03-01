@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} AdminController{% endblock %}
+
+{% block body %}
+<style>
+
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <h1>Administración </h1>
+        <br>
+        <a class="btn btn-dark" href="{{ path('app_create') }}">Create user</a><br>
+
+        {% for user in users %}
+
+            <a href="/admin/{{ user.id }}">{{ user.email }}</a>
+
+            <a class="btn btn-success" href="/admin/edit/{{ user.id }}">Edit</a>
+
+            <a class="btn btn-danger" href="/admin/delete/{{ user.id }}"
+               data-id="{{user.id}}">Borrar</a>
+
+            <br>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

@@ -3,14 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
-use App\Form\UserType;
-use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
@@ -39,7 +36,7 @@ class UserController extends AbstractController
         $error=$form->getErrors();
 
         if($form->isSubmitted() && $form->isValid()){
-            $password=$passwordEncoder->encoderPassword($user, $user->getPlainPassword());
+            $password=$passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
             $entityManager=$this->getDoctrine()->getManager();
             $entityManager->persist($user);
